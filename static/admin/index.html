@@ -8,10 +8,11 @@
   </head>
   <body>
     <!-- Include the script that builds the page and powers Netlify CMS -->
+    <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
     <script>
-      const CMS = require('netlify-cms');
+    //   const CMS = require('netlify-cms');
       // Now the registry is available via the CMS object.
-      CMS.registerPreviewTemplate('my-template', MyTemplate)
+    //   CMS.registerPreviewTemplate('my-template', MyTemplate)
 
       if (window.netlifyIdentity) {
         window.netlifyIdentity.on('init', (user) => {
@@ -23,6 +24,5 @@
         })
       }
     </script>
-    <!-- <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script> -->
   </body>
 </html>
