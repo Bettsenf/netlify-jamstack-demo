@@ -11,4 +11,18 @@ collections:
       slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
       folder: "_reports/report"
       fields:
-        - { label: "Firmensicht", name: "firmensicht", widget: "text" }
+        - {label: "Title", name: "title", widget: "string"}
+        - { label: "company view", name: "company view", widget: "text" }
+        - { label: "indicator fiscal year", name: "indicator fiscal year", widget: "number" }
+        - { label: "indicator {{month}}", name: "indicator {{month}}", widget: "number" }
+        - { label: "external utilization fiscal year", name: "external utilization fiscal year", widget: "number" }
+        - { label: "external utilization {{month}}", name: "external utilization {{month}}", widget: "number" }
+        - { label: "daily rate fiscal year", name: "daily rate fiscal year", widget: "number" }
+        - { label: "daily rate {{month}}", name: "daily rate {{month}}", widget: "number" }
+        - { label: "cost rate fiscal year", name: "cost rate fiscal year", widget: "number" }
+        - { label: "cost rate {{month}}", name: "cost rate {{month}}", widget: "number" }
+        - { label: "gross revenue fiscal year", name: "gross revenue iscal year", widget: "number" }
+        - { label: "gross revenue {{month}}", name: "gross revenue {{month}}", widget: "number" }
+        - { label: "expenses fiscal year", name: "expenses iscal year", widget: "number" }
+        - { label: "expenses {{month}}", name: "expenses {{month}}", widget: "number" }
+        
