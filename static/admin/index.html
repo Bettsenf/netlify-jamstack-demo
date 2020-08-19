@@ -9,7 +9,7 @@
   <body>
     <!-- Include the script that builds the page and powers Netlify CMS -->
     <script>
-      import CMS from 'netlify-cms'
+      const CMS = require('netlify-cms');
       // Now the registry is available via the CMS object.
       CMS.registerPreviewTemplate('my-template', MyTemplate)
 
