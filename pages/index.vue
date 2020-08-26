@@ -1,6 +1,7 @@
 <template>
   <div class="container">
-    <div v-for="station in stations" :key="station">{{ station }}</div>
+    <!-- <div v-for="station in stations" :key="station">{{ station }}</div> -->
+    <pre>{{ lines }}</pre>
     <div id="tube-map"></div>
   </div>
 </template>
@@ -9,19 +10,27 @@
 import Vue from 'vue';
 import { select, zoom, event } from 'd3';
 import { tubeMap } from 'd3-tube-map';
-// import data from './stations.json';
 
 function generate(data: any) {
-  const stations = data.map((line: any) =>
-    line.stations.reduce((station: any) => ({ [station]: { label: station } }), {})
+  const stations = data.reduce(
+    (lineAcc: any, line: any) => ({
+      ...lineAcc,
+      stations: line.stations.reduce(
+        (stationAcc: any, station: any) => ({ ...stationAcc, [station.name]: { label: station.name } }),
+        {}
+      ),
+    }),
+    {}
   );
   const lines = data.map((line: any) => ({
     name: line.name,
-    nodes: line.stations.map((station: any, i: number) => ({ coords: [i + 2, 0], name: station.name, labelPos: 'S' })),
+    shiftCoords: [0, 0],
+    color: '#c1f390',
+    nodes: line.stations.map((station: any, i: number) => ({ coords: [i * 20, 0], name: station.name, labelPos: 'S' })),
   }));
 
   return {
-    stations,
+    stations: stations.stations,
     lines,
   };
 }
@@ -33,7 +42,7 @@ export default Vue.extend({
     console.log(JSON.stringify(lines));
 
     return {
-      stations: lines.map((line: any) => line.stations),
+      lines,
     };
   },
 
@@ -49,7 +58,9 @@ export default Vue.extend({
         console.log(name);
       });
 
-    container.datum(generate((this as any).stations)).call(map);
+    const data = generate((this as any).lines);
+    console.log(data);
+    container.datum(data).call(map);
 
     const svg = container.select<Element>('svg');
     const execZoom = zoom().scaleExtent([0.5, 4]).on('zoom', zoomed);
