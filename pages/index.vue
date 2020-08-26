@@ -11,6 +11,14 @@ import { tubeMap } from 'd3-tube-map';
 import data from './stations.json';
 
 export default Vue.extend({
+  async asyncData({ $content }: any) {
+    const posts = await $content('station').fetch();
+
+    return {
+      posts,
+    };
+  },
+
   mounted() {
     const container = select<HTMLDivElement, any>('#tube-map');
     const { offsetWidth, offsetHeight } = container.node()!;
