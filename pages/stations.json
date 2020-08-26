@@ -1,0 +1,88 @@
+{
+  "stations": {
+    "StoryMapping": {
+      "label": "Story Mapping"
+    },
+    "UiUx": {
+      "label": "UI/UX"
+    },
+    "DesignPatternsUi": {
+      "label": "Design Patterns UI"
+    },
+    "RequirementsEngineering": {
+      "label": "Requirements Engineering"
+    },
+    "BusinessModelCanvas": {
+      "label": "Business Model Canvas"
+    },
+    "Backlog": {
+      "label": "Backlog"
+    },
+    "TestRequirements": {
+      "label": "Test Requirements"
+    },
+    "CostOfDelay": {
+      "label": "Cost of Delay"
+    },
+    "Accessibility": {
+      "label": "Accessibility"
+    },
+    "EventStorming": {
+      "label": "Event Storming"
+    },
+    "UserCenteredDesign": {
+      "label": "User Centered Design"
+    }
+  },
+  "lines": [
+    {
+      "name": "DevelopingDesign",
+      "color": "#c1f390",
+      "shiftCoords": [0, 0],
+      "nodes": [
+        {
+          "coords": [0, 0],
+          "name": "StoryMapping",
+          "labelPos": "W"
+        },
+        {
+          "coords": [4, 0],
+          "name": "UiUx",
+          "labelPos": "N"
+        },
+        {
+          "coords": [7, 0],
+          "name": "DesignPatternsUi",
+          "labelPos": "S"
+        },
+        { "coords": [8, 1] },
+        {
+          "coords": [8, 4],
+          "name": "RequirementsEngineering",
+          "labelPos": "W"
+        },
+        {
+          "coords": [8, 8],
+          "name": "BusinessModelCanvas",
+          "labelPos": "W"
+        },
+        { "coords": [9, 10] },
+        { "coords": [11, 12], "name": "Backlog", "labelPos": "NW" },
+        { "coords": [13, 13] },
+        { "coords": [20, 13], "name": "TestRequirements", "labelPos": "N" },
+        { "coords": [24, 13] },
+        { "coords": [26, 12] },
+        { "coords": [28, 10], "name": "CostOfDelay", "labelPos": "NE" },
+        { "coords": [29, 8] },
+        { "coords": [29, 7], "name": "Accessibility", "labelPos": "W" },
+        { "coords": [30, 6] },
+        { "coords": [32, 6], "name": "EventStorming", "labelPos": "N" },
+        { "coords": [35, 6] },
+        { "coords": [36, 5] },
+        { "coords": [36, 0] },
+        { "coords": [35, -1] },
+        { "coords": [24, -1], "name": "UserCenteredDesign", "labelPos": "N" }
+      ]
+    }
+  ]
+}

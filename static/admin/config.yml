@@ -1,91 +1,19 @@
 backend:
-    name: git-gateway
-    branch: master
+  name: git-gateway
+  branch: master
 publish_mode: editorial_workflow
-media_folder: "static/images/uploads"
-public_folder: "/images/uploads"
+media_folder: 'static/images/uploads'
+public_folder: '/images/uploads'
 collections:
-    - name: "report"
-      label: "Report"
-      create: true
-      slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-      folder: "_reports/report"
-      fields:
-        - {label: "Title", name: "title", widget: "string"}
-        - label: "company view"
-          name: "company view"
-          widget: "object"
-          collapsed: true
-          fields:
-            - { label: "description", name: "description", widget: "text" }
-            - { label: "indicator fiscal year", name: "indicator fiscal year", widget: "number" }
-            - { label: "indicator", name: "indicator", widget: "number" }
-            - { label: "external utilization fiscal year", name: "external utilization fiscal year", widget: "number" }
-            - { label: "external utilization", name: "external utilization", widget: "number" }
-            - { label: "daily rate fiscal year", name: "daily rate fiscal year", widget: "number" }
-            - { label: "daily rate", name: "daily rate", widget: "number" }
-            - { label: "cost rate fiscal year", name: "cost rate fiscal year", widget: "number" }
-            - { label: "cost rate", name: "cost rate", widget: "number" }
-            - { label: "gross revenue fiscal year", name: "gross revenue iscal year", widget: "number" }
-            - { label: "gross revenue", name: "gross revenue", widget: "number" }
-            - { label: "expenses fiscal year", name: "expenses iscal year", widget: "number" }
-            - { label: "expenses", name: "expenses", widget: "number" }
-        - label: "department view"
-          name: "department view"
-          widget: "object"
-          collapsed: true
-          fields:
-              - { label: "description", name: "description", widget: "text" }
-              - { label: "indicator fiscal year", name: "indicator fiscal year", widget: "number" }
-              - { label: "indicator", name: "indicator", widget: "number" }
-              - { label: "external utilization fiscal year", name: "external utilization fiscal year", widget: "number" }
-              - { label: "external utilization", name: "external utilization", widget: "number" }
-              - { label: "daily rate fiscal year", name: "daily rate fiscal year", widget: "number" }
-              - { label: "daily rate", name: "daily rate", widget: "number" }
-              - { label: "cost rate fiscal year", name: "cost rate fiscal year", widget: "number" }
-              - { label: "cost rate", name: "cost rate", widget: "number" }
-              - { label: "gross revenue fiscal year", name: "gross revenue iscal year", widget: "number" }
-              - { label: "gross revenue", name: "gross revenue", widget: "number" }
-              - { label: "expenses fiscal year", name: "expenses iscal year", widget: "number" }
-              - { label: "expenses", name: "expenses", widget: "number" }
-        - label: "personal view"
-          name: "personal view"
-          widget: "object"
-          collapsed: true
-          fields:
-              - { label: "external utilization fiscal year", name: "external utilization fiscal year", widget: "number" }
-              - { label: "external utilization", name: "external utilization", widget: "number" }
-              - { label: "relative utilization fiscal year", name: "relative utilization fiscal year", widget: "number" }
-              - { label: "relative utilization", name: "relative utilization", widget: "number" }
-              - { label: "training fiscal year", name: "training fiscal year", widget: "number" }
-              - { label: "training", name: "training", widget: "number" }
-              - { label: "overtime fiscal year", name: "overtime fiscal year", widget: "number" }
-              - { label: "overtime", name: "overtime", widget: "number" }
-              - label: "projects"
-                name: "projects"
-                collapsed: false
-                widget: "list"
-                fields:
-                  - { label: "customer", name: "customer", widget: "string" }
-                  - { label: "project", name: "project", widget: "string" }
-                  - label: "department"
-                    name: "department"
-                    widget: "select"
-                    options: ["DTD", "ACE", "IOT"]
-                  - { label: "days", name: "days", widget: "number" }
-                  - { label: "realized fee", name: "realized fee", widget: "number" }
-              - label: "internal projects"
-                name: "internal projects"
-                collapsed: false
-                widget: "list"
-                fields:
-                  - { label: "project", name: "project", widget: "string" }
-                  - label: "department"
-                    name: "department"
-                    widget: "select"
-                    options: ["DTD", "ACE", "IOT"]
-                  - { label: "days", name: "days", widget: "number" }
-                  - label: "category"
-                    name: "category"
-                    widget: "select"
-                    options: ["R&D"]
+  - name: 'station'
+    label: 'Station'
+    create: true
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    folder: 'content/station'
+    fields:
+      - label: 'stations'
+        name: 'stations'
+        collapsed: false
+        widget: 'list'
+        fields:
+          - { label: 'station', name: 'station', widget: 'string' }
