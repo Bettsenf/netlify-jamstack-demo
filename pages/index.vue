@@ -1,7 +1,8 @@
 <template>
-  <!-- <div class="container"> -->
-  <div id="tube-map"></div>
-  <!-- </div> -->
+  <div class="container">
+    <div v-for="station in stations" :key="station">{{ station[0].name }}</div>
+    <div id="tube-map"></div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -12,10 +13,12 @@ import data from './stations.json';
 
 export default Vue.extend({
   async asyncData({ $content }: any) {
-    const posts = await $content('station').fetch();
+    const lines = await $content('line').fetch();
+    // eslint-disable-next-line no-console
+    console.log(lines);
 
     return {
-      posts,
+      stations: lines.map((line: any) => line.stations),
     };
   },
 

@@ -5,15 +5,15 @@ publish_mode: editorial_workflow
 media_folder: 'static/images/uploads'
 public_folder: '/images/uploads'
 collections:
-  - name: 'station'
-    label: 'Station'
+  - name: 'line'
+    label: 'Line'
     create: true
     slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
-    folder: 'content/station'
+    folder: 'content/line'
     fields:
       - label: 'stations'
         name: 'stations'
         collapsed: false
         widget: 'list'
         fields:
-          - { label: 'station', name: 'station', widget: 'string' }
+          - { label: 'name', name: 'name', widget: 'string' }

@@ -1,4 +1,0 @@
----
-stations:
-  - station: Story Mapping
----
