@@ -1,9 +1,5 @@
 <template>
-  <div class="container">
-    <!-- <div v-for="station in stations" :key="station">{{ station }}</div> -->
-    <pre>{{ lines }}</pre>
-    <div id="tube-map"></div>
-  </div>
+  <div id="tube-map"></div>
 </template>
 
 <script lang="ts">
@@ -11,22 +7,30 @@ import Vue from 'vue';
 import { select, zoom, event } from 'd3';
 import { tubeMap } from 'd3-tube-map';
 
+// TODO: d3 SSR
+// TODO: Color
+// TODO: Header/Footer
+// TODO: Github Account, Netflify Account
+
 function generate(data: any) {
   const stations = data.reduce(
     (lineAcc: any, line: any) => ({
       ...lineAcc,
-      stations: line.stations.reduce(
-        (stationAcc: any, station: any) => ({ ...stationAcc, [station.name]: { label: station.name } }),
-        {}
-      ),
+      stations: {
+        ...lineAcc.stations,
+        ...line.stations.reduce(
+          (stationAcc: any, station: any) => ({ ...stationAcc, [station.name]: { label: station.name } }),
+          {}
+        ),
+      },
     }),
     {}
   );
-  const lines = data.map((line: any) => ({
+  const lines = data.map((line: any, i: number) => ({
     name: line.name,
-    shiftCoords: [0, 0],
+    shiftCoords: [0, i * 5],
     color: '#c1f390',
-    nodes: line.stations.map((station: any, i: number) => ({ coords: [i * 20, 0], name: station.name, labelPos: 'S' })),
+    nodes: line.stations.map((station: any, j: number) => ({ coords: [j * 20, 0], name: station.name, labelPos: 'S' })),
   }));
 
   return {
