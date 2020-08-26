@@ -11,6 +11,7 @@ collections:
     slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
     folder: 'content/line'
     fields:
+      - { label: 'name', name: 'name', widget: 'string' }
       - label: 'stations'
         name: 'stations'
         collapsed: false

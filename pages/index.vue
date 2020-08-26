@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div v-for="station in stations" :key="station">{{ station[0].name }}</div>
+    <div v-for="station in stations" :key="station">{{ station }}</div>
     <div id="tube-map"></div>
   </div>
 </template>
@@ -9,13 +9,28 @@
 import Vue from 'vue';
 import { select, zoom, event } from 'd3';
 import { tubeMap } from 'd3-tube-map';
-import data from './stations.json';
+// import data from './stations.json';
+
+function generate(data: any) {
+  const stations = data.map((line: any) =>
+    line.stations.reduce((station: any) => ({ [station]: { label: station } }), {})
+  );
+  const lines = data.map((line: any) => ({
+    name: line.name,
+    nodes: line.stations.map((station: any, i: number) => ({ coords: [i + 2, 0], name: station.name, labelPos: 'S' })),
+  }));
+
+  return {
+    stations,
+    lines,
+  };
+}
 
 export default Vue.extend({
   async asyncData({ $content }: any) {
     const lines = await $content('line').fetch();
     // eslint-disable-next-line no-console
-    console.log(lines);
+    console.log(JSON.stringify(lines));
 
     return {
       stations: lines.map((line: any) => line.stations),
@@ -34,7 +49,7 @@ export default Vue.extend({
         console.log(name);
       });
 
-    container.datum(data).call(map);
+    container.datum(generate((this as any).stations)).call(map);
 
     const svg = container.select<Element>('svg');
     const execZoom = zoom().scaleExtent([0.5, 4]).on('zoom', zoomed);
