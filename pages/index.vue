@@ -19,7 +19,6 @@
         </g>
       </g>
     </svg>
-    <!-- <div id="tube-map"></div> -->
   </div>
 </template>
 
@@ -48,15 +47,14 @@ export const DEFAULT_LINE_COLOR = '#91c2f3';
 export default Vue.extend({
   async asyncData({ $content }: any) {
     const data: Line[] = await $content('line').fetch();
-    const appConfig: AppConfig = await $content('config').fetch();
+    const appConfig: AppConfig[] = await $content('config').fetch();
 
     const lines = data.map(line => ({
       ...line,
       color: line.color && isColor(line.color) ? line.color : DEFAULT_LINE_COLOR,
     }));
-    console.log(JSON.stringify(lines));
 
-    const { size } = appConfig;
+    const { size } = appConfig[0];
 
     return {
       lines,
@@ -74,7 +72,6 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-// #tube-map,
 .container {
   display: flex;
   flex-direction: column;
