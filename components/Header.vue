@@ -12,7 +12,7 @@ $font-size: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: $header-height;
+  min-height: $header-height;
   text-transform: uppercase;
   font-size: $font-size;
   background-color: $primary-background-light;

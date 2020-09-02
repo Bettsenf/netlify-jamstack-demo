@@ -26,12 +26,7 @@ html {
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
   background-color: $primary-background;
-}
-
-html,
-svg text {
   color: $primary-text;
-  fill: $primary-text;
 }
 
 *,

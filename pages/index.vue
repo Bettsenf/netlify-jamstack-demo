@@ -1,92 +1,92 @@
 <template>
-  <div id="tube-map"></div>
+  <div class="container">
+    <svg :style="{ height: lines.length * offset.y }">
+      <g v-for="(line, i) in lines" :key="line.name + i">
+        <g v-for="(station, j) in line.stations" :key="station.name + j">
+          <circle :cx="offset.x * j + size" :cy="offset.y * i + size" :r="8 * (size / 10)" :fill="line.color" />
+          <text :x="offset.x * j + size / 2" :y="offset.y * i + 3 * size + 5" :font-size="size" :fill="line.color">
+            {{ station.name }}
+          </text>
+          <line
+            v-if="j < line.stations.length - 1"
+            :x1="offset.x * j + size"
+            :y1="offset.y * i + size"
+            :x2="offset.x * j + offset.x + size"
+            :y2="offset.y * i + size"
+            :stroke="line.color"
+            :stroke-width="size / 2"
+          />
+        </g>
+      </g>
+    </svg>
+    <!-- <div id="tube-map"></div> -->
+  </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import { select, zoom, event } from 'd3';
-import { tubeMap } from 'd3-tube-map';
+import isColor from 'is-color';
 
-// TODO: d3 SSR
-// TODO: Color
 // TODO: Github Account, Netflify Account
 
-function generate(data: any) {
-  const stations = data.reduce(
-    (lineAcc: any, line: any) => ({
-      ...lineAcc,
-      stations: {
-        ...lineAcc.stations,
-        ...line.stations.reduce(
-          (stationAcc: any, station: any) => ({ ...stationAcc, [station.name]: { label: station.name } }),
-          {}
-        ),
-      },
-    }),
-    {}
-  );
-  const lines = data.map((line: any, i: number) => ({
-    name: line.name,
-    shiftCoords: [0, i * 5],
-    color: line.color && isValidCssColor(line.color) ? line.color : '#91c2f3',
-    nodes: line.stations.map((station: any, j: number) => ({ coords: [j * 20, 0], name: station.name, labelPos: 'S' })),
-  }));
-
-  return {
-    stations: stations.stations,
-    lines,
-  };
+export interface Station {
+  name: string;
 }
 
-function isValidCssColor(color: string): boolean {
-  const { style } = new Option();
-  style.color = color;
-  return !!style.color;
+export interface Line {
+  name: string;
+  color?: string;
+  stations: Station[];
 }
+
+export interface AppConfig {
+  size: number;
+}
+
+export const DEFAULT_LINE_COLOR = '#91c2f3';
 
 export default Vue.extend({
   async asyncData({ $content }: any) {
-    const lines = await $content('line').fetch();
+    const data: Line[] = await $content('line').fetch();
+    const appConfig: AppConfig = await $content('config').fetch();
+
+    const lines = data.map(line => ({
+      ...line,
+      color: line.color && isColor(line.color) ? line.color : DEFAULT_LINE_COLOR,
+    }));
     console.log(JSON.stringify(lines));
+
+    const { size } = appConfig;
 
     return {
       lines,
+      offset: { x: 2 * size, y: size },
+      size: size / 5,
     };
   },
 
-  mounted() {
-    const container = select<HTMLDivElement, any>('#tube-map');
-    const { offsetWidth, offsetHeight } = container.node()!;
-
-    const map = tubeMap()
-      .width(offsetWidth)
-      .height(offsetHeight)
-      .on('click', (name: string) => {
-        // eslint-disable-next-line no-console
-        console.log(name);
-      });
-
-    const data = generate((this as any).lines);
-    console.log(data);
-    container.datum(data).call(map);
-
-    const svg = container.select<Element>('svg');
-    const execZoom = zoom().scaleExtent([0.5, 4]).on('zoom', zoomed);
-
-    const zoomContainer = svg.call(execZoom);
-    const initialScale = 1;
-
-    execZoom.scaleTo(zoomContainer, initialScale);
-
-    function zoomed() {
-      svg.select('g').attr('transform', event.transform.toString());
-    }
+  methods: {
+    color(cssColor: string) {
+      return cssColor && isColor(cssColor) ? cssColor : '#91c2f3';
+    },
   },
 });
 </script>
 
 <style lang="scss" scoped>
-#tube-map {
-  height: 100%;
+// #tube-map,
+.container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+pre {
+  font-size: 0.5rem;
+}
+
+svg {
+  width: 100%;
+  max-width: 1024px;
+  margin: auto;
 }
 </style>

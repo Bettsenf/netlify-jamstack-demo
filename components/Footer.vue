@@ -16,7 +16,7 @@ $font-size: 1.3rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: $header-height;
+  min-height: $header-height;
   background-color: lighten($color: $primary-background-light, $amount: 5);
   font-size: $font-size;
   color: $primary-text-dark;
