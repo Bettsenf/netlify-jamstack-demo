@@ -1,0 +1,10 @@
+$primary-hue: 210;
+$primary-background: hsl($primary-hue, 34.5%, 12.5%);
+$primary-background-light: lighten(
+  $color: $primary-background,
+  $amount: 10,
+);
+
+$primary-text: white;
+
+$header-height: 64px;

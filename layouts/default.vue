@@ -1,8 +1,8 @@
 <template>
   <div class="layout-container">
-    <div>Header</div>
+    <Header></Header>
     <Nuxt />
-    <div>Footer</div>
+    <Footer></Footer>
   </div>
 </template>
 
@@ -14,7 +14,7 @@
 }
 </style>
 
-<style>
+<style lang="scss">
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
     sans-serif;
@@ -25,6 +25,13 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
+  background-color: $primary-background;
+}
+
+html,
+svg text {
+  color: $primary-text;
+  fill: $primary-text;
 }
 
 *,
