@@ -9,7 +9,6 @@ import { tubeMap } from 'd3-tube-map';
 
 // TODO: d3 SSR
 // TODO: Color
-// TODO: Header/Footer
 // TODO: Github Account, Netflify Account
 
 function generate(data: any) {
@@ -29,7 +28,7 @@ function generate(data: any) {
   const lines = data.map((line: any, i: number) => ({
     name: line.name,
     shiftCoords: [0, i * 5],
-    color: '#c1f390',
+    color: line.color && isValidCssColor(line.color) ? line.color : '#91c2f3',
     nodes: line.stations.map((station: any, j: number) => ({ coords: [j * 20, 0], name: station.name, labelPos: 'S' })),
   }));
 
@@ -39,10 +38,15 @@ function generate(data: any) {
   };
 }
 
+function isValidCssColor(color: string): boolean {
+  const { style } = new Option();
+  style.color = color;
+  return !!style.color;
+}
+
 export default Vue.extend({
   async asyncData({ $content }: any) {
     const lines = await $content('line').fetch();
-    // eslint-disable-next-line no-console
     console.log(JSON.stringify(lines));
 
     return {
@@ -85,13 +89,4 @@ export default Vue.extend({
 #tube-map {
   height: 100%;
 }
-// .container {
-//   margin: 0 auto;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   text-align: center;
-//   flex-direction: column;
-//   flex: 1;
-// }
 </style>

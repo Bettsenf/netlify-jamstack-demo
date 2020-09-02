@@ -6,5 +6,6 @@ $primary-background-light: lighten(
 );
 
 $primary-text: white;
+$primary-text-dark: darken($primary-text, 10);
 
 $header-height: 64px;

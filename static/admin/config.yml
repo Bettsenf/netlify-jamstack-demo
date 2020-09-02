@@ -12,6 +12,7 @@ collections:
     folder: 'content/line'
     fields:
       - { label: 'name', name: 'name', widget: 'string' }
+      - { label: 'color', name: 'color', widget: 'string', required: false }
       - label: 'stations'
         name: 'stations'
         collapsed: false
