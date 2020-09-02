@@ -62,12 +62,6 @@ export default Vue.extend({
       size: size / 5,
     };
   },
-
-  methods: {
-    color(cssColor: string) {
-      return cssColor && isColor(cssColor) ? cssColor : '#91c2f3';
-    },
-  },
 });
 </script>
 
