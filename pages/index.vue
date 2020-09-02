@@ -46,8 +46,8 @@ export const DEFAULT_LINE_COLOR = '#91c2f3';
 
 export default Vue.extend({
   async asyncData({ $content }: any) {
-    const data: Line[] = await $content('line').fetch();
-    const appConfig: AppConfig[] = await $content('config').fetch();
+    const data: Line[] = await $content('lines').fetch();
+    const appConfig: AppConfig[] = await $content('configs').fetch();
 
     const lines = data.map(line => ({
       ...line,
