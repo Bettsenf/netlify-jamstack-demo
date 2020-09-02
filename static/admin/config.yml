@@ -8,12 +8,12 @@ collections:
   - name: 'line'
     label: 'Line'
     create: true
-    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    slug: '{{year}}-{{month}}-{{day}}-{{hour}}-{{minute}}-{{fields.name}}'
     folder: 'content/line'
     fields:
-      - { label: 'name', name: 'name', widget: 'string' }
-      - { label: 'color', name: 'color', widget: 'string', required: false }
-      - label: 'stations'
+      - { label: 'Name', name: 'name', widget: 'string' }
+      - { label: 'Color', name: 'color', widget: 'string', required: false }
+      - label: 'Stations'
         name: 'stations'
         collapsed: false
         widget: 'list'
