@@ -11,7 +11,7 @@ collections:
     slug: config
     file: 'content/config.md'
     fields:
-      - { label: 'Name', name: 'name', widget: 'string', default: 'App Config' }
+      - { label: 'Name', name: 'name', widget: 'string', default: 'App Config', hidden: true }
       - { label: 'Draw Size', name: 'size', widget: 'number', default: 150 }
 
   - name: 'line'
