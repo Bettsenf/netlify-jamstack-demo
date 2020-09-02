@@ -5,20 +5,20 @@ backend:
 media_folder: 'static/images/uploads'
 public_folder: '/images/uploads'
 collections:
-  - name: config
-    label: App Config
-    create: true
-    slug: config
-    file: 'content/config.md'
-    fields:
-      - { label: 'Name', name: 'name', widget: 'string', default: 'App Config', hidden: true }
-      - { label: 'Draw Size', name: 'size', widget: 'number', default: 150 }
+  - name: configs
+    label: Configs
+    files:
+      - label: App Config
+        name: app-config
+        file: 'content/app-config.md'
+        fields:
+          - { label: 'Draw Size', name: 'size', widget: 'number', default: 150 }
 
-  - name: 'line'
-    label: 'Line'
+  - name: 'lines'
+    label: 'Lines'
     create: true
     slug: '{{year}}-{{month}}-{{day}}-{{hour}}-{{minute}}-{{fields.name}}'
-    folder: 'content/line'
+    folder: 'content/lines'
     fields:
       - { label: 'Name', name: 'name', widget: 'string' }
       - { label: 'Color', name: 'color', widget: 'string', required: false }
